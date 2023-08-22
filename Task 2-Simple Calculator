@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+int main() {
+    // Declare variables to store operands, operand choice, and result
+    int operand1, operand2, operandChoice, result;
+
+    // Prompt the user to enter two numbers
+    cout << "Welcome to our Calculator Program!\n"
+          "Please enter your two numbers:"<<endl;
+    cin >> operand1 >> operand2;
+
+    // Prompt the user to select an operation
+    cout << "Please select your operation:\n"
+          "1.Addition\n"
+          "2.Subtraction\n"
+          "3.Multiplication\n"
+          "4.Division";
+    cin >> operandChoice;
+
+    // Perform the selected operation based on the operand choice
+    switch (operandChoice) {
+        case 1:
+            result = operand1 + operand2;
+            break;
+        case 2:
+            result = operand1 - operand2;
+            break;
+        case 3:
+            result = operand1 * operand2;
+            break;
+        case 4:
+            result = operand1 / operand2;
+            break;
+        default:
+            cout << "Invalid choice!\n";
+            return 0;
+    }
+    
+    // Display the result
+    cout << "Result :" << result;
+    
+    return 0;
+}
