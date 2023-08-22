@@ -1,7 +1,10 @@
+//Number Guessing Game
 #include <iostream>
 using namespace std;
-int main() {
+int main(){
+    //seeds the value
     srand(time(0));
+    //Generates a random number    
     int randomNumber = rand() % 100 + 1;
     int userGuesses,attempts;
     cout<<"Welcome to the Number Guessing Game!" <<endl;
