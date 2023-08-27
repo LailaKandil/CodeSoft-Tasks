@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+//Function that displays the board
+void displayBoard(char board[3][3]) {
+    cout << "-------------" << endl;
+    for (int i = 0; i < 3; i++) {
+        cout << "| ";
+        for (int j = 0; j < 3; j++) {
+            cout << board[i][j] << " | ";
+        }
+        cout << endl;
+        cout << "-------------" << endl;
+    }
+}
+
+//Function to check if the player won
+bool checkForWin(char board[3][3], char player){
+    //Check rows
+    for(int i = 0; i < 3; i++){
+        if(board[i][0] == player && board[i][1] == player && board[i][2] == player)
+            return true;
+        if(board[0][i] == player && board[1][i] == player && board[2][i] == player)
+            return true;
+    }
+
+    //Check Diagonals
+    if(board[0][0] == player && board[1][1] == player && board[2][2] == player)
+        return true;
+    if(board[0][2] == player && board[1][1] == player && board[2][0] == player)
+        return true;
+    else
+        return false;
+}
+
+//Function to check if the players draw
+bool checkForDraw(char board[3][3]){
+    for(int i = 0 ; i < 3 ; i++){
+        for(int j = 0; j < 3 ; j++){
+            if(board[i][j]==' '){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+int main(){
+    char board[3][3] = {{' ',' ',' '},{' ',' ',' '},{' ',' ',' '}};
+    char currentPlayer = 'X';
+    cout<<"Welcome to the Tic-Tac-Toe Game!\n"
+          "Player 1 is X\n"
+          "Player 2 is O\n";
+    bool gameOver = false;
+    while(!gameOver){
+        displayBoard(board);
+        cout << "Current Player: " << currentPlayer << endl;
+        cout << "Enter your move (row column)" << endl;
+        int row,col;
+        cin >> row >> col;
+        //check if the move is valid
+        if(row < 1 || row > 3 || col < 1 || col > 3 || board[row - 1][col - 1] != ' '){
+            cout << "Invalid!Try again." << endl;
+            continue;
+        }
+
+        //Update the board with the move
+        board[row - 1][col - 1] = currentPlayer;
+
+        //Check if the current player has won
+        if(checkForWin(board,currentPlayer)){
+            displayBoard(board);
+            cout<<"Player " << currentPlayer << " wins!" << endl;
+            gameOver = true;
+            break; //Stop the game
+        }
+
+        //Check if the game ends with a draw
+        else if (checkForDraw(board)) {
+            displayBoard(board);
+            cout << "The game is a draw!" << endl;
+            gameOver = true;
+            break; // Stop the game
+        }
+
+        // Switch players
+        else {
+            currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+        }
+    }
+    return 0;
+}
