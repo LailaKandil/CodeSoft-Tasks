@@ -1,11 +1,17 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+
+// Structure representing a task
 struct Task{
     string description;
     bool completed;
 };
+
+// Vector to store the tasks
 vector<Task>tasks;
+
+// Function to add a new task to the list
 void addTask(string description){
     Task newTask;
     newTask.description = description;
@@ -13,6 +19,8 @@ void addTask(string description){
     tasks.push_back(newTask);
     cout << "Task added successfully!";
 }
+
+// Function to view all the tasks in the list
 void viewTasks() {
     if(tasks.empty()){
         cout<<"Your To-Do List is empty!";
@@ -31,6 +39,8 @@ void viewTasks() {
         }
     }
 }
+
+// Function to remove a task from the list
 void removeTask (int taskIndex) {
     if(taskIndex>=1 && taskIndex<=tasks.size()){
         tasks.erase(tasks.begin() + taskIndex - 1);
@@ -40,6 +50,8 @@ void removeTask (int taskIndex) {
         cout<<"Invalid task index";
     }
 }
+
+// Function to mark a task as completed
 void markTask(int taskIndex){
     if(taskIndex >= 1 && taskIndex <= tasks.size()){
         tasks[taskIndex-1].completed = true;
